@@ -1,0 +1,8 @@
+com\example\restservice\service\FiguraExternalService.class
+com\example\restservice\controller\FiguraController.class
+com\example\restservice\model\FiguraResponse.class
+com\example\restservice\model\Rectangulo.class
+com\example\restservice\model\Circulo.class
+com\example\restservice\service\FiguraService.class
+com\example\restservice\DemoApplication.class
+com\example\restservice\model\Figura.class

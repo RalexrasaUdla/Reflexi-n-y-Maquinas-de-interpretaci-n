@@ -1,12 +1,11 @@
 package com.example.restservice.service;
-
 import com.example.restservice.model.Circulo;
 import com.example.restservice.model.Rectangulo;
 import com.example.restservice.model.Triangulo;
+import groovy.lang.GroovyClassLoader;
 import com.example.restservice.model.Figura;
 import com.example.restservice.model.FiguraResponse;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +45,28 @@ public class FiguraService {
             FiguraResponse respuesta = crearFigura(nombreFigura, parametros);
             listaRespuestas.add(respuesta);
         }
-
         return listaRespuestas;
+    }
+
+    public String registrarFiguraGroovy(String codigoGroovy) throws Exception {
+        
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
+        try (GroovyClassLoader loader = new GroovyClassLoader(classLoader)) {
+            Class<?> groovyClass = loader.parseClass(codigoGroovy);
+
+            if (!Figura.class.isAssignableFrom(groovyClass)) {
+                throw new IllegalArgumentException("La clase enviada no implementa la interfaz Figura.");
+            }
+
+            String nombreClase = groovyClass.getSimpleName();
+            registroClases.put(nombreClase, groovyClass);
+
+            return "Figura '" + nombreClase + "' registrada correctamente con Groovy.";
+        }
+    }
+
+    public Map<String, Class<?>> getRegistroClases() {
+        return registroClases;
     }
 }

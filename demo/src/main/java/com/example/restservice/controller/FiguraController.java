@@ -29,4 +29,13 @@ public class FiguraController {
             @RequestBody Map<String, Map<String, Object>> datosFiguras) throws Exception {
         return figuraService.calcularTodasConMedidas(datosFiguras);
     }
+
+    @PostMapping("/registrar-groovy")
+    public String registrarGroovy(@RequestBody String codigoGroovy) {
+        try {
+            return figuraService.registrarFiguraGroovy(codigoGroovy);
+        } catch (Exception e) {
+            return "Error al registrar la figura Groovy: " + e.getMessage();
+        }
+    }
 }

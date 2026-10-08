@@ -6,3 +6,4 @@ com\example\restservice\model\Circulo.class
 com\example\restservice\service\FiguraService.class
 com\example\restservice\DemoApplication.class
 com\example\restservice\model\Figura.class
+com\example\restservice\model\Triangulo.class
